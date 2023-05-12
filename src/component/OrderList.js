@@ -25,31 +25,36 @@ const OrderList = () => {
     return (
         <>
             <div className="container my-5">
-                <div className="row g-5">
+                <div className="row justify-content-center">
                     <div className="col-md-5 col-lg-4 order-md-last">
                         <h4 className="d-flex justify-content-between align-items-center mb-3">
                             <span className="text-primary">Your Order</span>
                             {/* <span className="badge bg-primary rounded-pill">{state.length}</span> */}
                         </h4>
-                        <ul className="list-group mb-3">
-                            {state.map(itemList)}
+                        {state.length === 0 ? (
+                            <div className="alert alert-warning text-center">
+                                No items in the cart
+                            </div>
+                        ) : (
+                            <ul className="list-group mb-3">
+                                {state.map(itemList)}
 
-                            <li className="list-group-item d-flex justify-content-between">
-                                <span>Total (USD)</span>
-                                <strong>${total}</strong>
-                            </li>
-                        </ul>
-                        {!isOrderPlaced && (
-                            <button
-                                className="btn btn-primary"
-                                onClick={handlePlaceOrder}
-                            >
-                                Place Order
-                            </button>
+                                <li className="list-group-item d-flex justify-content-between">
+                                    <span>Total (USD)</span>
+                                    <strong>${total}</strong>
+                                </li>
+                            </ul>
+                        )}
+                        {!isOrderPlaced && state.length > 0 && (
+                            <div className="text-center">
+                                <button className="btn btn-primary" onClick={handlePlaceOrder}>
+                                    Place Order
+                                </button>
+                            </div>
                         )}
                         {isOrderPlaced && (
-                            <div className="alert alert-success mt-3">
-                                Your order is successfully placed.
+                            <div className="alert alert-success mt-3 text-center">
+                                <div className="text-center">Your order is successfully placed.</div>
                             </div>
                         )}
                     </div>
@@ -60,4 +65,6 @@ const OrderList = () => {
 };
 
 export default OrderList;
+
+
 
