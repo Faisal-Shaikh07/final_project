@@ -9,6 +9,7 @@ import About from './component/About';
 import Contact from './component/Contact';
 import Cart from './component/Cart';
 import Checkout from './component/Checkout';
+import OrderList from "./component/OrderList";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/orderlist" element={<OrderList />} />
       </Routes>
 
     </div>
