@@ -1,10 +1,11 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const OrderList = () => {
-    const state = useSelector((state) => state.addItemsReducer)
-
+    const state = useSelector((state) => state.addItemsReducer);
+    const [isOrderPlaced, setIsOrderPlaced] = useState(false);
     var total = 0;
+
     const itemList = (item) => {
         total = total + item.price;
         return (
@@ -15,7 +16,11 @@ const OrderList = () => {
                 <span className="text-muted">${item.price}</span>
             </li>
         );
-    }
+    };
+
+    const handlePlaceOrder = () => {
+        setIsOrderPlaced(true);
+    };
 
     return (
         <>
@@ -34,10 +39,25 @@ const OrderList = () => {
                                 <strong>${total}</strong>
                             </li>
                         </ul>
+                        {!isOrderPlaced && (
+                            <button
+                                className="btn btn-primary"
+                                onClick={handlePlaceOrder}
+                            >
+                                Place Order
+                            </button>
+                        )}
+                        {isOrderPlaced && (
+                            <div className="alert alert-success mt-3">
+                                Your order is successfully placed.
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
         </>
-    )
-}
+    );
+};
+
 export default OrderList;
+
