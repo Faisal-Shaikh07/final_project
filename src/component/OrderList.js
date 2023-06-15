@@ -20,6 +20,9 @@ const OrderList = () => {
 
     const handlePlaceOrder = () => {
         setIsOrderPlaced(true);
+        setTimeout(()=> {
+            window.location.href = '/'
+        }, 1000)
     };
 
     return (
